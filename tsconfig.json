@@ -14,8 +14,14 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "importsNotUsedAsValues": "error"
   },
-  "exclude": ["node_modules", "dist"],
-  "include": ["src"]
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "include": [
+    "src"
+  ]
 }

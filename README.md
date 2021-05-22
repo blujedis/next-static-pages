@@ -1,25 +1,71 @@
-# Rollup Typescript Boilerplate
+# Next Static Pages
 
-[![CI](https://github.com/xg4/rollup-typescript-boilerplate/workflows/CI/badge.svg)](https://github.com/xg4/rollup-typescript-boilerplate/actions)
-[![codecov](https://img.shields.io/codecov/c/github/xg4/rollup-typescript-boilerplate.svg)](https://codecov.io/gh/xg4/rollup-typescript-boilerplate)
-[![GitHub](https://img.shields.io/github/license/xg4/rollup-typescript-boilerplate.svg)](https://github.com/xg4/rollup-typescript-boilerplate/blob/master/LICENSE)
+Modest helper module for easily rendering static files such as HTML or Markdown content in [NextJS](https://nextjs.org). **NSP** exports the required methods needed to load your static paths and props making the rendering of said content a snap in your component.
 
-## Installation
+For more on generating static content please see [Static Generation](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation).
 
-```bash
-$ git clone git@github.com:xg4/rollup-typescript-boilerplate.git <your project name>
-# or
-$ git clone https://github.com/xg4/rollup-typescript-boilerplate <your project name>
+## Getting Started
 
-$ cd <your project name>
-$ rm -rf .git
-$ git init
-$ git remote add origin <your git repo>
-$ git add .
-$ git commit -m "Initial commit"
-$ git push -u origin master
+From your terminal install **NSP** for use in your project.
+
+```sh
+npm install next-static-pages
+```
+OR
+```sh
+yarn add next-static-pages
 ```
 
-## LICENSE
+## Usage
 
-MIT
+By default you only need a directory called **statics** in the root of your project. NSP will resolve any files with the <code>.md</code> extension. Essentially markdown files. When a markdown file is detected NSP will also parse it for gray matter at the top of the file and return said data as props.data for your component. 
+
+```tsx
+import nsc from 'next-static-pages';
+const { getStaticPaths, getStaticProps } = nsc(); // using all defaults.
+
+const MyComponent = ({ content }) => {
+  return (
+    <div>
+      {content}
+    </div>
+  );
+};
+
+export { getStaticPaths, getStaticProps };
+export default MyComponent;
+```
+
+## Syntax Highlighting (using highlight.js)
+
+**NSP** supports syntax highlighting which often is required when serving static markdown files as they can contain code syntax. Similar to this very README file.
+
+In order to use syntax highlighting you must register the languages that should be applied to detected <code>`<code>`</code> elements. 
+
+You will likely also want to import your desired styles/theme! See below.
+
+See more on [highlight.js](https://highlightjs.org/usage/)
+
+> NOTE: for convenience we've included highlight.js in the library however in the future may be removed requiring your highlighter to be passed in as an option.
+
+```tsx
+import nsc from 'next-static-pages';  // import our module.
+import typescript from 'highlight.js/lib/languages/typescript'; // lang to register.
+import 'highlight.js/styles/an-old-hope.css'; // css styles for highlighting.
+
+const { getStaticPaths, getStaticProps, highlighter } = nsc(); 
+highlighter.registerLanguage('typescript', typescript);
+```
+
+## Docs
+
+See [https://blujedis.github.io/next-static-paeges/](https://blujedis.github.io/next-static-paeges/)
+
+## Change
+
+See [CHANGE.md](CHANGE.md)
+
+## License
+
+See [LICENSE.md](LICENSE)
+

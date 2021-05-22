@@ -1,0 +1,6 @@
+{
+  "out": "./docs",
+  "name": "next-static-pages",
+  "readme": "none",
+  "tsconfig": "./tsconfig.json"
+}
