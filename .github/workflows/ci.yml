@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   test-windows:
@@ -74,7 +74,7 @@ jobs:
       - name: Test
         env:
           CI: true
-        run: npm run test:cov
+        run: npm run test:coverage
 
       - name: Build
         run: npm run build
