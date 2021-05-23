@@ -151,7 +151,7 @@ module.exports = (phase, { defaultConfig }) => {
 
 ## Options 
 
-For a list of options, their defaults and their function head over to the [Api Docs Options]() for more information.
+For a list of options, their defaults and their function head over to the [Api Docs Options](https://blujedis.github.io/next-static-pages/interfaces/ioptions.html) for more information.
 
 ## Issues Importing Node Modules
 
