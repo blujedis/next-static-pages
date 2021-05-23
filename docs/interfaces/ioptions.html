@@ -58,23 +58,26 @@
 					<a href="ioptions.html">IOptions</a>
 				</li>
 			</ul>
-			<h1>Interface IOptions</h1>
+			<h1>Interface IOptions&lt;M&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>M<span class="tsd-signature-symbol">: </span><a href="../index.html#mode" class="tsd-signature-type" data-tsd-kind="Type alias">Mode</a> = <span class="tsd-signature-type">&quot;render&quot;</span></h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">IOptions</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="ioptionsinternal.html" class="tsd-signature-type" data-tsd-kind="Interface">IOptionsInternal</a>
-							</li>
-						</ul>
 					</li>
 				</ul>
 			</section>
@@ -85,11 +88,16 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#dirs" class="tsd-kind-icon">dirs</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#directories" class="tsd-kind-icon">directories</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#excludes" class="tsd-kind-icon">excludes</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#extensions" class="tsd-kind-icon">extensions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#fallback" class="tsd-kind-icon">fallback</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#highlight" class="tsd-kind-icon">highlight</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#mode" class="tsd-kind-icon">mode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#onbeforerender" class="tsd-kind-icon">on<wbr>Before<wbr>Render</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#onslugify" class="tsd-kind-icon">on<wbr>Slugify</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#paramkey" class="tsd-kind-icon">param<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#recursive" class="tsd-kind-icon">recursive</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ioptions.html#sanitize" class="tsd-kind-icon">sanitize</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,54 +106,277 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="dirs" class="tsd-anchor"></a>
-					<h3>dirs</h3>
-					<div class="tsd-signature tsd-kind-icon">dirs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="directories" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> directories</h3>
+					<div class="tsd-signature tsd-kind-icon">directories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L13">types.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L28">types.ts:28</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The directories to load static files from..</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>statics</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="excludes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> excludes</h3>
+					<div class="tsd-signature tsd-kind-icon">excludes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L43">types.ts:43</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Glob patterns for excluding files.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>[]</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="extensions" class="tsd-anchor"></a>
-					<h3>extensions</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> extensions</h3>
 					<div class="tsd-signature tsd-kind-icon">extensions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L14">types.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L36">types.ts:36</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The allowable extension.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>[md, html]</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fallback" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> fallback</h3>
+					<div class="tsd-signature tsd-kind-icon">fallback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;blocking&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L68">types.ts:68</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates fallback mode for statically generated content. Read issue below.
+								If the content can be loaded quickly then you likely want &quot;blocking&quot; which
+								is the default. Use &quot;true&quot; if you need to show a loading state. Setting to
+							&quot;false&quot; may result in a blank rendered page when using locales.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://github.com/vercel/next.js/issues/15637">https://github.com/vercel/next.js/issues/15637</a></p>
+							</dd>
+							<dt>default</dt>
+							<dd><p>blocking</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="highlight" class="tsd-anchor"></a>
-					<h3>highlight</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> highlight</h3>
 					<div class="tsd-signature tsd-kind-icon">highlight<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L16">types.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L57">types.ts:57</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When true apply syntax highlighting to the content before sending to component props.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>false</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="mode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mode</h3>
+					<div class="tsd-signature tsd-kind-icon">mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">M</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L20">types.ts:20</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When creating an instance &quot;getStaticProps&quot; can return either rendered
+								content or it can return a props object containing &quot;slugs&quot; or paths you can
+							use for creating links to rendered static files.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>render</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="onbeforerender" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Before<wbr>Render</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Before<wbr>Render<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L92">types.ts:92</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Simple callback you can use for manipulating output before rendered as props.content</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>the parsed markdown, html and or highlighted content.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-interface">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>content: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="onslugify" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Slugify</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Slugify<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>segments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>ext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>locale<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L85">types.ts:85</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Optional method used to create slugs or keys used to generate links.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>array of path segments excluding root directory, locale and extension.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>an object containing the root directory, ext and locale if exists.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-interface">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>segments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>ext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>locale<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>segments: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-symbol">{ </span>ext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>locale<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+												<ul class="tsd-parameters">
+													<li class="tsd-parameter">
+														<h5>ext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+													</li>
+													<li class="tsd-parameter">
+														<h5><span class="tsd-flag ts-flagOptional">Optional</span> locale<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+													</li>
+													<li class="tsd-parameter">
+														<h5>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+													</li>
+												</ul>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="paramkey" class="tsd-anchor"></a>
-					<h3>param<wbr>Key</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> param<wbr>Key</h3>
 					<div class="tsd-signature tsd-kind-icon">param<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L12">types.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L50">types.ts:50</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The param key used to identify the dynamic file to be loaded and the route param.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>slug</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="recursive" class="tsd-anchor"></a>
-					<h3>recursive</h3>
-					<div class="tsd-signature tsd-kind-icon">recursive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="sanitize" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> sanitize</h3>
+					<div class="tsd-signature tsd-kind-icon">sanitize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L15">types.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L77">types.ts:77</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Define specific extensions to be sanitized or use &#39;*&#39; to sanitize all output.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>example</dt>
+							<dd><p>[&#39;.html&#39;]</p>
+							</dd>
+							<dt>see</dt>
+							<dd><p><a href="https://reactjs.org/docs/dom-elements.html">https://reactjs.org/docs/dom-elements.html</a></p>
+							</dd>
+							<dt>default</dt>
+							<dd><p>*</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -159,53 +390,71 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="icomponentprops.html" class="tsd-kind-icon">IComponent<wbr>Props</a>
+					<li class=" tsd-kind-reference">
+						<a href="../index.html#nsp" class="tsd-kind-icon">nsp</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
 						<a href="ioptions.html" class="tsd-kind-icon">IOptions</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ioptions.html#dirs" class="tsd-kind-icon">dirs</a>
+								<a href="ioptions.html#directories" class="tsd-kind-icon">directories</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ioptions.html#excludes" class="tsd-kind-icon">excludes</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="ioptions.html#extensions" class="tsd-kind-icon">extensions</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ioptions.html#fallback" class="tsd-kind-icon">fallback</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="ioptions.html#highlight" class="tsd-kind-icon">highlight</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ioptions.html#mode" class="tsd-kind-icon">mode</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ioptions.html#onbeforerender" class="tsd-kind-icon">on<wbr>Before<wbr>Render</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ioptions.html#onslugify" class="tsd-kind-icon">on<wbr>Slugify</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="ioptions.html#paramkey" class="tsd-kind-icon">param<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ioptions.html#recursive" class="tsd-kind-icon">recursive</a>
+								<a href="ioptions.html#sanitize" class="tsd-kind-icon">sanitize</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="ioptionsinternal.html" class="tsd-kind-icon">IOptions<wbr>Internal</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="iparsedresult.html" class="tsd-kind-icon">IParsed<wbr>Result</a>
+						<a href="irenderedprops.html" class="tsd-kind-icon">IRendered<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="ipathresolved.html" class="tsd-kind-icon">IPath<wbr>Resolved</a>
+						<a href="iresolvedpath.html" class="tsd-kind-icon">IResolved<wbr>Path</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="istaticprops.html" class="tsd-kind-icon">IStatic<wbr>Props</a>
+						<a href="iresolvedprops.html" class="tsd-kind-icon">IResolved<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../index.html#graymatterresult" class="tsd-kind-icon">Gray<wbr>Matter<wbr>Result</a>
 					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#mode" class="tsd-kind-icon">Mode</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../index.html#nspcomponent" class="tsd-kind-icon">NSPComponent</a>
 					</li>
-					<li class=" tsd-kind-function">
-						<a href="../index.html#createparser" class="tsd-kind-icon">create<wbr>Parser</a>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#staticprops" class="tsd-kind-icon">Static<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#default" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>
 			</nav>

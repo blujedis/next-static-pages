@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IParsedResult | next-static-pages</title>
+	<title>IResolvedPath | next-static-pages</title>
 	<meta name="description" content="Documentation for next-static-pages">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,29 +55,21 @@
 					<a href="../index.html">next-static-pages</a>
 				</li>
 				<li>
-					<a href="iparsedresult.html">IParsedResult</a>
+					<a href="iresolvedpath.html">IResolvedPath</a>
 				</li>
 			</ul>
-			<h1>Interface IParsedResult&lt;T&gt;</h1>
+			<h1>Interface IResolvedPath</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T = <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IParsedResult</span>
+						<span class="target">IResolvedPath</span>
 					</li>
 				</ul>
 			</section>
@@ -88,8 +80,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iparsedresult.html#content" class="tsd-kind-icon">content</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iparsedresult.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresolvedpath.html#ext" class="tsd-kind-icon">ext</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresolvedpath.html#locale" class="tsd-kind-icon">locale</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresolvedpath.html#path" class="tsd-kind-icon">path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresolvedpath.html#slug" class="tsd-kind-icon">slug</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,24 +92,64 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="content" class="tsd-anchor"></a>
-					<h3>content</h3>
-					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="ext" class="tsd-anchor"></a>
+					<h3>ext</h3>
+					<div class="tsd-signature tsd-kind-icon">ext<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L32">types.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L118">types.ts:118</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The extension of the path used in determining if markdown and gray matter should be parsed.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
+					<a name="locale" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> locale</h3>
+					<div class="tsd-signature tsd-kind-icon">locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L31">types.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L128">types.ts:128</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A string prefix matching the sites enabled locales.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="path" class="tsd-anchor"></a>
+					<h3>path</h3>
+					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L113">types.ts:113</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The resolved path based on specified dirs and file type by extention.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="slug" class="tsd-anchor"></a>
+					<h3>slug</h3>
+					<div class="tsd-signature tsd-kind-icon">slug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L123">types.ts:123</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A generated slug or key for matching params in getStaticProps.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -129,44 +163,53 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="icomponentprops.html" class="tsd-kind-icon">IComponent<wbr>Props</a>
+					<li class=" tsd-kind-reference">
+						<a href="../index.html#nsp" class="tsd-kind-icon">nsp</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="ioptions.html" class="tsd-kind-icon">IOptions</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="ioptionsinternal.html" class="tsd-kind-icon">IOptions<wbr>Internal</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="irenderedprops.html" class="tsd-kind-icon">IRendered<wbr>Props</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="iparsedresult.html" class="tsd-kind-icon">IParsed<wbr>Result</a>
+					<li class="current tsd-kind-interface">
+						<a href="iresolvedpath.html" class="tsd-kind-icon">IResolved<wbr>Path</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iparsedresult.html#content" class="tsd-kind-icon">content</a>
+								<a href="iresolvedpath.html#ext" class="tsd-kind-icon">ext</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iparsedresult.html#data" class="tsd-kind-icon">data</a>
+								<a href="iresolvedpath.html#locale" class="tsd-kind-icon">locale</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iresolvedpath.html#path" class="tsd-kind-icon">path</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iresolvedpath.html#slug" class="tsd-kind-icon">slug</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="ipathresolved.html" class="tsd-kind-icon">IPath<wbr>Resolved</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="istaticprops.html" class="tsd-kind-icon">IStatic<wbr>Props</a>
+						<a href="iresolvedprops.html" class="tsd-kind-icon">IResolved<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../index.html#graymatterresult" class="tsd-kind-icon">Gray<wbr>Matter<wbr>Result</a>
 					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#mode" class="tsd-kind-icon">Mode</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../index.html#nspcomponent" class="tsd-kind-icon">NSPComponent</a>
 					</li>
-					<li class=" tsd-kind-function">
-						<a href="../index.html#createparser" class="tsd-kind-icon">create<wbr>Parser</a>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#staticprops" class="tsd-kind-icon">Static<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#default" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>
 			</nav>

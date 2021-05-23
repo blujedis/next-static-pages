@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IStaticProps | next-static-pages</title>
+	<title>IResolvedProps | next-static-pages</title>
 	<meta name="description" content="Documentation for next-static-pages">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../index.html">next-static-pages</a>
 				</li>
 				<li>
-					<a href="istaticprops.html">IStaticProps</a>
+					<a href="iresolvedprops.html">IResolvedProps</a>
 				</li>
 			</ul>
-			<h1>Interface IStaticProps</h1>
+			<h1>Interface IResolvedProps</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IStaticProps</span>
+						<span class="target">IResolvedProps</span>
 					</li>
 				</ul>
 			</section>
@@ -80,7 +80,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="istaticprops.html#params" class="tsd-kind-icon">params</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresolvedprops.html#resolved" class="tsd-kind-icon">resolved</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,18 +89,18 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="params" class="tsd-anchor"></a>
-					<h3>params</h3>
-					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<a name="resolved" class="tsd-anchor"></a>
+					<h3>resolved</h3>
+					<div class="tsd-signature tsd-kind-icon">resolved<span class="tsd-signature-symbol">:</span> <a href="iresolvedpath.html" class="tsd-signature-type" data-tsd-kind="Interface">IResolvedPath</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/7475405/src/types.ts#L38">types.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/blujedis/next-static-pages/blob/f447174/src/types.ts#L158">types.ts:158</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-						</ul>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An array of found/generated slug paths.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -115,28 +115,25 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="icomponentprops.html" class="tsd-kind-icon">IComponent<wbr>Props</a>
+					<li class=" tsd-kind-reference">
+						<a href="../index.html#nsp" class="tsd-kind-icon">nsp</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="ioptions.html" class="tsd-kind-icon">IOptions</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="ioptionsinternal.html" class="tsd-kind-icon">IOptions<wbr>Internal</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="iparsedresult.html" class="tsd-kind-icon">IParsed<wbr>Result</a>
+						<a href="irenderedprops.html" class="tsd-kind-icon">IRendered<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="ipathresolved.html" class="tsd-kind-icon">IPath<wbr>Resolved</a>
+						<a href="iresolvedpath.html" class="tsd-kind-icon">IResolved<wbr>Path</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="istaticprops.html" class="tsd-kind-icon">IStatic<wbr>Props</a>
+						<a href="iresolvedprops.html" class="tsd-kind-icon">IResolved<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="istaticprops.html#params" class="tsd-kind-icon">params</a>
+								<a href="iresolvedprops.html#resolved" class="tsd-kind-icon">resolved</a>
 							</li>
 						</ul>
 					</li>
@@ -145,11 +142,17 @@
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../index.html#graymatterresult" class="tsd-kind-icon">Gray<wbr>Matter<wbr>Result</a>
 					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#mode" class="tsd-kind-icon">Mode</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../index.html#nspcomponent" class="tsd-kind-icon">NSPComponent</a>
 					</li>
-					<li class=" tsd-kind-function">
-						<a href="../index.html#createparser" class="tsd-kind-icon">create<wbr>Parser</a>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#staticprops" class="tsd-kind-icon">Static<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#default" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>
 			</nav>
