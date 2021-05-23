@@ -28,12 +28,14 @@ export default [
       {
         file: pkg.main,
         format: 'cjs',
-        banner
+        banner,
+        exports: 'named'
       },
       {
         file: pkg.module,
         format: 'esm',
-        banner
+        banner,
+        exports: 'named'
       },
     ],
     plugins: [
@@ -43,6 +45,7 @@ export default [
       babel({
         extensions,
         include: ['src/**/*'],
+        runtimeHelpers: true
       }),
       // terser(),
     ],

@@ -1,5 +1,5 @@
 {
-  "name": "nsp",
+  "name": "next-static-pages",
   "version": "0.0.1",
   "description": "Module that makes NextJS static pages like markdown easier to display.",
   "keywords": [
@@ -27,11 +27,11 @@
   ],
   "scripts": {
     "docs": "rimraf dist && typedoc src/index.ts && touch ./docs/.nojekyll",
+    "clean": "rimraf dist",
     "prebuild": "npm run test && npm run clean",
     "build": "npm run build:types && npm run build:js",
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly",
-    "clean": "rimraf dist",
     "lint": "eslint src/**/* --fix",
     "prerelease": "npm run build",
     "release": "npx standard-version",
@@ -39,7 +39,7 @@
     "start": "rollup -c -w",
     "pretest": "npm run lint",
     "test": "jest",
-    "test:cov": "npm run test -- --coverage",
+    "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch --notify",
     "types:check": "tsc --noEmit",
     "types:watch": "npm run types:check -- --watch"
@@ -74,8 +74,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
+    "@babel/runtime": "^7.14.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@rollup/plugin-commonjs": "^11.1.0",
@@ -85,6 +87,7 @@
     "@types/markdown-it": "^12.0.1",
     "@types/node": "^15.6.0",
     "@types/react": "^17.0.6",
+    "@types/react-dom": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
     "eslint": "^6.8.0",
@@ -105,6 +108,6 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^10.7.2",
     "markdown-it": "^12.0.6",
-    "slugify": "^1.5.3"
+    "xss": "^1.0.9"
   }
 }

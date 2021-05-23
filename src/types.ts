@@ -4,69 +4,93 @@ import type { FC } from 'react';
 /**
  * Next Static Pages functional component.
  */
-export type NSPComponent<P extends IParsedResult = IParsedResult> = FC<P>;
+export type NSPComponent<P extends IRenderedProps = IRenderedProps> = FC<P>;
 
-export interface IGlobOptions {
+export type Mode = 'render' | 'resolved';
+
+export interface IOptions<M extends Mode = 'render'> {
 
   /**
-   * The directory or directories to parse static files/pages from.
+   * When creating an instance "getStaticProps" can return either rendered
+   * content or it can return a props object containing "slugs" or paths you can
+   * use for creating links to rendered static files.
+   * 
+   * @default render
+   */
+  mode?: M;
+
+  /**
+   * The directories to load static files from..
    * 
    * @default statics
+   * 
    */
-   dirs: string | string[];
-
-   /**
-    * The supported extensions that may be resolved when rendering static files/pages.
-    * 
-    * @default md
-    */
-   extensions: string | string[];
- 
-   /**
-    * When true starting from the above defined directories files will be resolved recursively.
-    * 
-    * @default false
-    */
-   recursive: boolean;
-
-}
-
-export interface IOptions extends IGlobOptions {
+  directories?: string | string[];
 
   /**
-   * The param key used to identify the dynamic file to be loaded. 
+   * The allowable extension.
+   * 
+   * @default 
+   * [md, html]
+   */
+  extensions?: string | string[];
+
+  /**
+   * Glob patterns for excluding files.
+   * 
+   * @default []
+   */
+  excludes?: string | string[];
+
+  /**
+   * The param key used to identify the dynamic file to be loaded and the route param.
    * 
    * @default slug
    */
-  paramKey: string;
+  paramKey?: string;
 
   /**
    * When true apply syntax highlighting to the content before sending to component props.
    * 
    * @default false
    */
-  highlight: boolean;
+  highlight?: boolean;
 
   /**
-   * The locale to be filtered applied. When defined it is assumed each 
-   * 
-   * @default undefined
-   */
-  locale: string | undefined;
-
-  /**
-   * Indicates mode for handling previously generated static content. See below for why this 
-   * was introduced.
+   * Indicates fallback mode for statically generated content. Read issue below.
+   * If the content can be loaded quickly then you likely want "blocking" which
+   * is the default. Use "true" if you need to show a loading state. Setting to
+   * "false" may result in a blank rendered page when using locales.
    * 
    * @see https://github.com/vercel/next.js/issues/15637
+   * @default blocking
    */
-  fallback: boolean | 'blocking';
+  fallback?: boolean | 'blocking';
 
   /**
-   * When true the paths are relative from the root directory of parsed paths.
+   * Define specific extensions to be sanitized or use '*' to sanitize all output.
+   * 
+   * @example ['.html'] 
+   * @see https://reactjs.org/docs/dom-elements.html
+   * @default *
    */
-  excludeRootDir: boolean;
-  
+  sanitize?: null | undefined | false | '*' | string | string[];
+
+  /**
+   * Optional method used to create slugs or keys used to generate links.
+   * 
+   * @param segments array of path segments excluding root directory, locale and extension.
+   * @param metadata an object containing the root directory, ext and locale if exists.
+   */
+  onSlugify?: (segments: string[], metadata?: { root: string; ext: string; locale?: string }) => string;
+
+  /**
+   * Simple callback you can use for manipulating output before rendered as props.content
+   * 
+   * @param content the parsed markdown, html and or highlighted content.
+   */
+  onBeforeRender?: (content: string) => string;
+
 }
 
 /**
@@ -74,12 +98,14 @@ export interface IOptions extends IGlobOptions {
  * 
  * @ignore
  */
-export interface IOptionsInternal extends IOptions {
-  dirs: string[];
+export interface IOptionsInternal<M extends Mode = 'render'> extends IOptions<M> {
+  directories: string[];
   extensions: string[];
+  excludes: string[];
+  sanitize: string[];
 }
 
-export interface IPathResolved {
+export interface IResolvedPath {
 
   /**
    * The resolved path based on specified dirs and file type by extention.
@@ -96,9 +122,14 @@ export interface IPathResolved {
    */
   slug: string;
 
+  /**
+   * A string prefix matching the sites enabled locales.
+   */
+  locale?: string;
+
 }
 
-export interface IParsedResult<T = Record<string, any>> {
+export interface IRenderedProps<T = Record<string, any>> {
 
   /**
    * Optional metadata parsed from file with file type is markdown.
@@ -110,7 +141,28 @@ export interface IParsedResult<T = Record<string, any>> {
    */
   content: string;
 
+  /**
+   * This is more or less so you know there's an issue only the error message
+   * will be present, see console for full stack. When an error is present the raw
+   * string is returned in content.
+   */
+  err?: string;
+
 }
+
+export interface IResolvedProps {
+
+  /**
+   * An array of found/generated slug paths.
+   */
+  resolved: IResolvedPath[];
+
+}
+
+/**
+ * Type alias determining return type based on user defined Mode.
+ */
+export type StaticProps<M extends Mode> = M extends 'render' ? IRenderedProps : IResolvedProps;
 
 /**
  * Gray matter parsed result.

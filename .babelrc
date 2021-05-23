@@ -1,4 +1,14 @@
 {
-  "presets": ["@babel/env", "@babel/typescript"],
-  "plugins": []
+  "presets": [
+    "@babel/env",
+    "@babel/typescript"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
+  ]
 }
