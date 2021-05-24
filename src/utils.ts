@@ -6,7 +6,7 @@ import xss, { IFilterXSSOptions } from 'xss';
  * @param segments array of segments used to create a slug.
  * @returns A slugified string.
  */
- export function slugify(segments: string[]) {
+export function slugify(segments: string[]) {
   return segments.map(v => v.replace(/[.\s]/g, '-')).join('-');
 }
 

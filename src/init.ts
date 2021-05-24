@@ -7,7 +7,7 @@ import { sep, parse, join, relative, extname } from 'path';
 import { slugify, normalizeArray, dedupe, sanitizer } from './utils';
 import gmatter from 'gray-matter';
 import markdown from 'markdown-it';
-import highlighter from 'highlight.js/lib/core';
+import hljs from 'highlight.js';
 import type { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 
@@ -196,9 +196,9 @@ function nsp<M extends Mode>(initOptions = DEFAULTS as IOptions<M>) {
 
     const config = !highlight ? {} : {
       highlight: (str: string, lang: string) => {
-        if (!highlight || !lang || !highlighter.getLanguage(lang))
+        if (!highlight || !lang || !hljs.getLanguage(lang))
           return str;
-        return highlighter.highlightAuto(str).value;
+        return hljs.highlightAuto(str).value;
       }
     };
 
@@ -235,17 +235,22 @@ function nsp<M extends Mode>(initOptions = DEFAULTS as IOptions<M>) {
       if (isMarkdown) {
         const result = gmatter(content) as GrayMatterResult;
         data = result.data;
+
+        if (sanitize.includes('*') || sanitize.includes(ext))
+          content = sanitizer(result.content);
+
         content = renderMarkdown(result.content, highlight);
+
       }
 
       else if (highlight) {
-        content = highlighter.highlightAuto(content).value;
-      }
 
-      // Sanitize is always an array at this point.
-      // check if includes all or the specific extension.
-      if (sanitize.includes('*') || sanitize.includes(ext))
-        content = sanitizer(content);
+        if (sanitize.includes('*') || sanitize.includes(ext))
+          content = sanitizer(content);
+
+        content = hljs.highlightAuto(content).value;
+
+      }
 
       content = onBeforeRender(content);
 
@@ -328,10 +333,6 @@ function nsp<M extends Mode>(initOptions = DEFAULTS as IOptions<M>) {
   }
 
   return {
-    highlighter,
-    getPaths,
-    resolvePaths,
-    renderFile,
     getStaticPaths,
     getStaticProps
   };

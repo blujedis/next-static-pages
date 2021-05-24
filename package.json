@@ -29,7 +29,7 @@
     "docs": "rimraf dist && typedoc src/index.ts && touch ./docs/.nojekyll",
     "clean": "rimraf dist",
     "prebuild": "npm run test && npm run clean",
-    "build": "npm run build:types && npm run build:js && npm run docs",
+    "build": "npm run build:types && npm run build:js",
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly",
     "lint": "eslint src/**/* --fix",
