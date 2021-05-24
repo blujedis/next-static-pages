@@ -104,6 +104,16 @@ export default MyComponent;
 
 **NSP** supports syntax highlighting which often is required when serving static markdown files as they can contain code syntax. Similar to this very README file.
 
+Currently highlighting is use "auto" mode. The only thing you need to do to enable highlighting is to set the option to true and import a style that you wish to use.
+
+```tsx
+// import the desired style.
+import 'highlight.js/styles/an-old-hope.css';
+
+// Set highlight to true.
+const { getStaticPaths, getStaticProps } = nsp({ highlight: true });
+```
+
 See more on [highlight.js](https://highlightjs.org/usage/)
 
 > NOTE: for convenience we've included highlight.js in this library however in the future we'll probably pull this out so that more efficient important of only the required languanges can be provided.
