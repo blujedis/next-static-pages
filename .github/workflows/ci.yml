@@ -6,27 +6,27 @@ on:
       - main
 
 jobs:
-  # test-windows:
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v1
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
 
-  #     - name: Use Node.js
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '12.x'
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
 
-  #     - name: Install
-  #       run: yarn
+      - name: Install
+        run: yarn
 
-  #     - name: Test
-  #       env:
-  #         CI: true
-  #       run: npm run test
+      - name: Test
+        env:
+          CI: true
+        run: npm run test
 
-  #     - name: Build
-  #       run: npm run build
+      - name: Build
+        run: npm run build
 
   test-macos:
     runs-on: macos-latest

@@ -40,32 +40,10 @@ test('getStaticProps: Render HTML', async () => {
 });
 
 test('getStaticProps: Resolved Configs', async () => {
-  const expectedObj = {
-    resolved: [
-      {
-        path: '__tests__/content/markdown.md',
-        ext: '.md',
-        slug: 'markdown'
-      },
-      {
-        path: '__tests__/content/markup.html',
-        ext: '.html',
-        slug: 'markup'
-      },
-      {
-        path: '__tests__/content/es/locale.md',
-        ext: '.md',
-        slug: 'es-locale'
-      },
-      {
-        path: '__tests__/content/nested/metadata.md',
-        ext: '.md',
-        slug: 'nested-metadata'
-      }
-    ]
-  };
+  const expectedArr = ['markdown', 'markup', 'es-locale', 'nested-metadata'];
   const result =
     await getStaticPropsResolved({}) as { props: IResolvedProps; revalidate?: number | boolean };
-  expect(result.props).toEqual(expectedObj);
+  const resolved = result.props.resolved.map(v => v.slug);
+  expect(resolved.sort()).toEqual(expectedArr.sort());
 });
 
