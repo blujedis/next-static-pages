@@ -2,7 +2,7 @@
 /// <reference path="../node_modules/highlight.js/types/index.d.ts" />
 
 import fglob from 'fast-glob';
-import { readFile } from 'fs/promises';
+import { PathLike, readFile } from 'fs';
 import { sep, parse, join, relative, extname } from 'path';
 import { slugify, normalizeArray, dedupe, sanitizer } from './utils';
 import gmatter from 'gray-matter';
@@ -17,6 +17,7 @@ import type {
   Mode,
   StaticProps
 } from './types';
+import type { Abortable } from 'events';
 
 const DEFAULTS: IOptions = {
   mode: 'render',
@@ -110,6 +111,26 @@ function nsp<M extends Mode>(initOptions = DEFAULTS as IOptions<M>) {
 
     return undefined;
 
+  }
+
+  /**
+   * Reads a file from the file system.
+   * 
+   * NOTE: wrapper because jest when running in ci doesn't like import 'fs/promises';
+   * 
+   * @param path the path to be read.
+   * @param options the read options to apply
+   * @returns The file from file system.
+   */
+  async function readFileAsync(path: PathLike | number,
+    options?: { encoding?: null; flag?: string } & Abortable | undefined | null) {
+    return new Promise<Buffer>((res, rej) => {
+      readFile(path, options, (err, data) => {
+        if (err)
+          return rej(err);
+        res(data);
+      });
+    });
   }
 
   /**
@@ -224,7 +245,7 @@ function nsp<M extends Mode>(initOptions = DEFAULTS as IOptions<M>) {
       };
 
     const isMarkdown = /\.md$/.test(path);
-    const buffer = await readFile(path);
+    const buffer = await readFileAsync(path);
     const ext = extname(path);
     let content = buffer.toString();
     let data = {};

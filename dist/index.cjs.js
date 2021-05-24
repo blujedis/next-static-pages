@@ -11,7 +11,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var fglob = _interopDefault(require('fast-glob'));
-var promises = require('fs/promises');
+var fs = require('fs');
 var path = require('path');
 var xss = _interopDefault(require('xss'));
 var gmatter = _interopDefault(require('gray-matter'));
@@ -1057,6 +1057,20 @@ function nsp() {
     return undefined;
   }
   /**
+   * Reads a file from the file system.
+   * 
+   * NOTE: wrapper because jest when running in ci doesn't like import 'fs/promises';
+   * 
+   * @param path the path to be read.
+   * @param options the read options to apply
+   * @returns The file from file system.
+   */
+
+
+  function readFileAsync(_x, _x2) {
+    return _readFileAsync.apply(this, arguments);
+  }
+  /**
    * Gets an array of path strings by way of resolving glob patterns.
    * 
    * @param patterns the glob patterns for loading paths.
@@ -1064,6 +1078,29 @@ function nsp() {
    * @returns Array of path strings.
    */
 
+
+  function _readFileAsync() {
+    _readFileAsync = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(path, options) {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              return _context.abrupt("return", new Promise(function (res, rej) {
+                fs.readFile(path, options, function (err, data) {
+                  if (err) return rej(err);
+                  res(data);
+                });
+              }));
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _readFileAsync.apply(this, arguments);
+  }
 
   function getPaths(dirs, options) {
     options = _objectSpread({
@@ -1108,28 +1145,28 @@ function nsp() {
 
 
   function _resolvePaths() {
-    _resolvePaths = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+    _resolvePaths = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2() {
       var dirs,
           locales,
           defaultLocale,
           options,
           paths,
-          _args = arguments;
-      return regenerator.wrap(function _callee$(_context) {
+          _args2 = arguments;
+      return regenerator.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              dirs = _args.length > 0 && _args[0] !== undefined ? _args[0] : directories;
-              locales = _args.length > 1 && _args[1] !== undefined ? _args[1] : [];
-              defaultLocale = _args.length > 2 ? _args[2] : undefined;
-              options = _args.length > 3 ? _args[3] : undefined;
+              dirs = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : directories;
+              locales = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : [];
+              defaultLocale = _args2.length > 2 ? _args2[2] : undefined;
+              options = _args2.length > 3 ? _args2[3] : undefined;
               dirs = normalizeArray(dirs);
-              _context.next = 7;
+              _context2.next = 7;
               return getPaths(dirs, options);
 
             case 7:
-              paths = _context.sent;
-              return _context.abrupt("return", dedupe(paths).map(function (path$1) {
+              paths = _context2.sent;
+              return _context2.abrupt("return", dedupe(paths).map(function (path$1) {
                 var _parse = path.parse(path$1),
                     dir = _parse.dir,
                     name = _parse.name,
@@ -1164,10 +1201,10 @@ function nsp() {
 
             case 9:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }));
     return _resolvePaths.apply(this, arguments);
   }
@@ -1195,7 +1232,7 @@ function nsp() {
    */
 
 
-  function renderFile(_x) {
+  function renderFile(_x3) {
     return _renderFile.apply(this, arguments);
   }
   /**
@@ -1207,7 +1244,7 @@ function nsp() {
 
 
   function _renderFile() {
-    _renderFile = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(path$1) {
+    _renderFile = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3(path$1) {
       var highlight,
           isMarkdown,
           buffer,
@@ -1216,30 +1253,30 @@ function nsp() {
           data,
           err,
           result,
-          _args2 = arguments;
-      return regenerator.wrap(function _callee2$(_context2) {
+          _args3 = arguments;
+      return regenerator.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              highlight = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : initHighlight;
+              highlight = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : initHighlight;
 
               if (path$1) {
-                _context2.next = 3;
+                _context3.next = 3;
                 break;
               }
 
-              return _context2.abrupt("return", {
+              return _context3.abrupt("return", {
                 data: {},
                 content: ''
               });
 
             case 3:
               isMarkdown = /\.md$/.test(path$1);
-              _context2.next = 6;
-              return promises.readFile(path$1);
+              _context3.next = 6;
+              return readFileAsync(path$1);
 
             case 6:
-              buffer = _context2.sent;
+              buffer = _context3.sent;
               ext = path.extname(path$1);
               content = buffer.toString();
               data = {};
@@ -1263,7 +1300,7 @@ function nsp() {
                 console.log(ex.stack);
               }
 
-              return _context2.abrupt("return", {
+              return _context3.abrupt("return", {
                 content: content,
                 data: data,
                 err: err
@@ -1271,15 +1308,15 @@ function nsp() {
 
             case 13:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
     return _renderFile.apply(this, arguments);
   }
 
-  function getStaticPaths(_x2) {
+  function getStaticPaths(_x4) {
     return _getStaticPaths.apply(this, arguments);
   }
   /**
@@ -1291,72 +1328,72 @@ function nsp() {
 
 
   function _getStaticPaths() {
-    _getStaticPaths = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3(props) {
+    _getStaticPaths = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee4(props) {
       var locales, defaultLocale, paths;
-      return regenerator.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              // Get the enabled locales if any.
-              locales = props.locales || [];
-              defaultLocale = props.defaultLocale; // Resolve paths 
-
-              _context3.next = 4;
-              return resolvePaths(directories, locales, defaultLocale);
-
-            case 4:
-              resolvedPaths = _context3.sent;
-              paths = resolvedPaths.map(function (v) {
-                return {
-                  params: _defineProperty({}, paramKey, v.slug)
-                };
-              });
-              return _context3.abrupt("return", {
-                paths: paths,
-                fallback: fallback
-              });
-
-            case 7:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-    return _getStaticPaths.apply(this, arguments);
-  }
-
-  function getStaticProps(_x3) {
-    return _getStaticProps.apply(this, arguments);
-  }
-
-  function _getStaticProps() {
-    _getStaticProps = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee4(props) {
-      var locale, locales, defaultLocale, slug, config, path, rendered;
       return regenerator.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              locale = props.locale, locales = props.locales, defaultLocale = props.defaultLocale;
-
-              if (resolvedPaths.length) {
-                _context4.next = 5;
-                break;
-              }
+              // Get the enabled locales if any.
+              locales = props.locales || [];
+              defaultLocale = props.defaultLocale; // Resolve paths 
 
               _context4.next = 4;
               return resolvePaths(directories, locales, defaultLocale);
 
             case 4:
               resolvedPaths = _context4.sent;
+              paths = resolvedPaths.map(function (v) {
+                return {
+                  params: _defineProperty({}, paramKey, v.slug)
+                };
+              });
+              return _context4.abrupt("return", {
+                paths: paths,
+                fallback: fallback
+              });
 
-            case 5:
-              if (!(mode === 'resolved')) {
-                _context4.next = 7;
+            case 7:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+    return _getStaticPaths.apply(this, arguments);
+  }
+
+  function getStaticProps(_x5) {
+    return _getStaticProps.apply(this, arguments);
+  }
+
+  function _getStaticProps() {
+    _getStaticProps = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee5(props) {
+      var locale, locales, defaultLocale, slug, config, path, rendered;
+      return regenerator.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              locale = props.locale, locales = props.locales, defaultLocale = props.defaultLocale;
+
+              if (resolvedPaths.length) {
+                _context5.next = 5;
                 break;
               }
 
-              return _context4.abrupt("return", {
+              _context5.next = 4;
+              return resolvePaths(directories, locales, defaultLocale);
+
+            case 4:
+              resolvedPaths = _context5.sent;
+
+            case 5:
+              if (!(mode === 'resolved')) {
+                _context5.next = 7;
+                break;
+              }
+
+              return _context5.abrupt("return", {
                 props: {
                   resolved: resolvedPaths
                 }
@@ -1366,21 +1403,21 @@ function nsp() {
               slug = props.params ? props.params[paramKey] : '';
               config = matchRoute(resolvedPaths, slug, locale, fallback);
               path = (config === null || config === void 0 ? void 0 : config.path) || '';
-              _context4.next = 12;
+              _context5.next = 12;
               return renderFile(path);
 
             case 12:
-              rendered = _context4.sent;
-              return _context4.abrupt("return", {
+              rendered = _context5.sent;
+              return _context5.abrupt("return", {
                 props: _objectSpread({}, rendered)
               });
 
             case 14:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4);
+      }, _callee5);
     }));
     return _getStaticProps.apply(this, arguments);
   }
