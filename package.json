@@ -1,6 +1,6 @@
 {
   "name": "next-static-pages",
-  "version": "0.0.2-1",
+  "version": "0.0.2",
   "description": "Module that makes NextJS static pages like markdown easier to display.",
   "keywords": [
     "markdown",
